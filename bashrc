@@ -5,14 +5,21 @@ if [ -f /etc/bashrc ]; then
       . /etc/bashrc
 fi
 
+RC_DIR="$( cd "$(dirname BASH_SOURCE[0])" && pwd )"
+
+if [[ -f "${RC_DIR}/git-completion.bash" ]]; then 
+    source "${RC_DIR}/git-completion.bash"
+fi
 
 alias st='git status'
 alias co='git checkout'
 alias cb='git checkout -b'
 alias db='git branch -d'
-alias lg='git log --online'
+alias lg='git log --graph --all --topo-order --decorate --oneline --boundary'
 alias pull='git pull --rebase'
 
+alias l="ls -l"
+alias ll="ls -al"
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -81,8 +88,10 @@ git_prompt() {
     fi
 }
 
-export PS1='\h:\[\033[1;33m\]\w\[\033[0m\]$(git_prompt)\$ '
+export PS1='\[\033[1;33m\]\w\[\033[0m\]$(git_prompt)\$ '
 
 
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+[[ -s "/Users/ph2n8o7/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ph2n8o7/.sdkman/bin/sdkman-init.sh"
 
 
