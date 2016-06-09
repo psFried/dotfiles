@@ -7,16 +7,18 @@ fi
 
 RC_DIR="$( cd "$(dirname BASH_SOURCE[0])" && pwd )"
 
-if [[ -f "${RC_DIR}/git-completion.bash" ]]; then 
-    source "${RC_DIR}/git-completion.bash"
-fi
 
 alias st='git status'
 alias co='git checkout'
 alias cb='git checkout -b'
 alias db='git branch -d'
-alias lg='git log --graph --all --topo-order --decorate --oneline --boundary'
+alias lg='git log --graph --topo-order --decorate --oneline --boundary'
 alias pull='git pull --rebase'
+alias gap='git add -p'
+
+if [[ -f "${RC_DIR}/git-completion.bash" ]]; then 
+    source "${RC_DIR}/git-completion.bash"
+fi
 
 alias l="ls -l"
 alias ll="ls -al"
