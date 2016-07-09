@@ -5,7 +5,8 @@ if [ -f /etc/bashrc ]; then
       . /etc/bashrc
 fi
 
-RC_DIR="$( cd "$(dirname BASH_SOURCE[0])" && pwd )"
+# setup path variable to work with rustup
+export PATH="${HOME}/.cargo/bin:${PATH}"
 
 
 alias st='git status'
@@ -16,10 +17,6 @@ alias lg='git log --graph --topo-order --decorate --oneline --boundary'
 alias pull='git pull --rebase'
 alias gap='git add -p'
 
-if [[ -f "${RC_DIR}/git-completion.bash" ]]; then 
-    source "${RC_DIR}/git-completion.bash"
-fi
-
 alias l="ls -l"
 alias ll="ls -al"
 
@@ -27,6 +24,12 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+
+RC_DIR="$( cd "$(dirname BASH_SOURCE[0])" && pwd )"
+
+if [[ -f "${RC_DIR}/git-completion.bash" ]]; then 
+    source "${RC_DIR}/git-completion.bash"
+fi
 
 # Git Prompt stuff
 git_branch() {
