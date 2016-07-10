@@ -1,15 +1,15 @@
 [submodule "rust.vim"]
-	path = rust.vim
+	path = dotvim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
 [submodule "vim-markdown"]
-	path = vim-markdown
+	path = dotvim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "vim-gitgutter"]
-	path = vim-gitgutter
+	path = dotvim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "syntastic"]
-	path = syntastic
+	path = dotvim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 [submodule "delimitMate"]
-	path = delimitMate
+	path = dotvim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
