@@ -1,0 +1,20 @@
+[submodule "dotvim/bundle/rust.vim"]
+	path = dotvim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+	branch = HEAD
+[submodule "dotvim/bundle/syntastic"]
+	path = dotvim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+	branch = HEAD
+[submodule "dotvim/bundle/vim-markdown"]
+	path = dotvim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+	branch = HEAD
+[submodule "dotvim/bundle/delimitMate"]
+	path = dotvim/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+	branch = HEAD
+[submodule "dotvim/bundle/vim-gitgutter"]
+	path = dotvim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+	branch = HEAD

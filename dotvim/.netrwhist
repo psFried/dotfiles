@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/pfried/projects/conrods-game-of-life'
+let g:netrw_dirhist_2='/Users/pfried/projects/conrods-game-of-life/src'
+let g:netrw_dirhist_3='/Users/pfried/projects/dotfiles'
+let g:netrw_dirhist_4='/Users/pfried/projects/dotfiles/dotvim'
+let g:netrw_dirhist_5='/Users/pfried/projects/dotfiles/dotvim/autoload'
+let g:netrw_dirhist_6='/Users/pfried/projects/dotfiles/dotvim/bundle'
+let g:netrw_dirhist_7='/Users/pfried/projects/dotfiles/dotvim/bundle/delimitMate'
+let g:netrw_dirhist_8='/Users/pfried/projects/dotfiles/dotvim/bundle/rust.vim'
