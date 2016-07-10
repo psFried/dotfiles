@@ -16,6 +16,7 @@ alias db='git branch -d'
 alias lg='git log --graph --topo-order --decorate --oneline --boundary'
 alias pull='git pull --rebase'
 alias gap='git add -p'
+alias gaa='git add .'
 
 alias l="ls -l"
 alias ll="ls -al"
@@ -23,6 +24,10 @@ alias ll="ls -al"
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+function take() {
+    mkdir -p "$1" && cd "$1"
+}
 
 
 RC_DIR="$( cd "$(dirname BASH_SOURCE[0])" && pwd )"
