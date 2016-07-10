@@ -1,0 +1,9 @@
+[submodule "rust.vim"]
+	path = rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule "vim-markdown"]
+	path = vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "vim-gitgutter"]
+	path = vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
