@@ -13,3 +13,6 @@
 [submodule "delimitMate"]
 	path = dotvim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
+[submodule "dotvim/bundle/YouCompleteMe"]
+	path = dotvim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git

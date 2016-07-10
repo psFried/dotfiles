@@ -17,7 +17,7 @@ set hidden
 
 " for Racer plugin
 let $RUST_SRC_PATH="/Users/pfried/projects/rust/src"
-let g:racer_cmd = "/Users/pfried/projects/racer/target/relase/racer"
+let g:racer_cmd = "/Users/pfried/.cargo/bin/racer"
 
 " Stuff for Syntastic linter plugin
 set statusline+=%#warningmsg#
