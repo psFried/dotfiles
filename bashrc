@@ -7,13 +7,15 @@ fi
 
 # setup path variable to work with rustup
 export PATH="${HOME}/.cargo/bin:${PATH}"
+export LESS+=' -r'
 
 
 alias st='git status'
 alias co='git checkout'
 alias cb='git checkout -b'
 alias db='git branch -d'
-alias lg='git log --graph --topo-order --decorate --oneline --boundary'
+alias gcmsg='git commit -m'
+alias lg='git lg'
 alias pull='git pull --rebase'
 alias gap='git add -p'
 alias gaa='git add .'
@@ -30,10 +32,9 @@ function take() {
 }
 
 
-RC_DIR="$( cd "$(dirname BASH_SOURCE[0])" && pwd )"
 
-if [[ -f "${RC_DIR}/git-completion.bash" ]]; then 
-    source "${RC_DIR}/git-completion.bash"
+if [[ -f "${HOME}/projects/dotfiles/git-completion.bash" ]]; then 
+    source "${HOME}/projects/dotfiles/git-completion.bash"
 fi
 
 # Git Prompt stuff
@@ -105,3 +106,6 @@ export PS1='\[\033[1;33m\]\w\[\033[0m\]$(git_prompt)\$ '
 [[ -s "/Users/ph2n8o7/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ph2n8o7/.sdkman/bin/sdkman-init.sh"
 
 
+
+export NVM_DIR="/Users/pfried/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

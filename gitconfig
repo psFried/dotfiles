@@ -1,0 +1,10 @@
+[user]
+	email = pfried@paxata.com
+	name = Phil Fried
+
+[include]
+  path = ~/.pax_gitconfig
+
+
+[core]
+	editor = /usr/bin/vi
