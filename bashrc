@@ -37,6 +37,10 @@ if [[ -f "${HOME}/projects/dotfiles/git-completion.bash" ]]; then
     source "${HOME}/projects/dotfiles/git-completion.bash"
 fi
 
+if [[ -f "${HOME}/projects/dotfiles/invoke-maven.sh" ]]; then 
+    alias mvn="${HOME}/projects/dotfiles/invoke-maven.sh"
+fi
+
 # Git Prompt stuff
 git_branch() {
     # -- Finds and outputs the current branch name by parsing the list of
@@ -100,10 +104,6 @@ git_prompt() {
 }
 
 export PS1='\[\033[1;33m\]\w\[\033[0m\]$(git_prompt)\$ '
-
-
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[[ -s "/Users/ph2n8o7/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ph2n8o7/.sdkman/bin/sdkman-init.sh"
 
 
 
