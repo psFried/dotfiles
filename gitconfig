@@ -1,10 +1,25 @@
-[user]
-	email = pfried@paxata.com
-	name = Phil Fried
+# To use this config, add an 'include' section to your normal gitconfig at ~/.gitconfig with the path to this file
+# for example 
+# [include]
+#    path = "path/to/this/gitconfig"
 
-[include]
-  path = ~/.pax_gitconfig
+# Only push the current branch when you do a git push
+[push]
+    default = current
 
+# In the event that the local branch has changes that are not in the remote, do a rebase instead of possibly adding a merge commit
+[pull]
+    rebase = true
 
-[core]
-	editor = /usr/bin/vi
+[alias]
+    # pretty listing of branches in order of commit date
+    gb = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+    # More useful log output
+    lg = log --graph --topo-order --boundary --oneline
+    ap = add -p
+    co = checkout
+    cb = checkout -b
+    db = branch -d
+    br = branch
+    st = status
