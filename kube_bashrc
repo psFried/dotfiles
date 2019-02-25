@@ -1,0 +1,38 @@
+
+function kube_prompt() {
+    echo "[$(basename $(kubectl config current-context))]"
+}
+
+export PS1="$(kube_prompt)$PS1"
+
+export KUBENS=''
+
+function ekubectl() {
+    if [[ -z "$KUBENS" ]]; then
+        echo "Running without namespace: kubectl $@"
+        kubectl "$@"
+    else
+        echo "Running with namespace: kubectl -n $KUBENS $@"
+        kubectl -n "$KUBENS" "$@"
+    fi
+}
+
+function nskubectl() {
+    export KUBENS="$1"
+    if [[ "$#" -gt 1 ]]; then
+        ekubectl "${@:2}"
+    fi
+}
+
+
+alias kns='nskubectl'
+alias k='ekubectl'
+
+alias kg='k get'
+alias kgp='k get pod'
+alias kgs='k get service'
+
+alias kd='k describe'
+alias kdp='k describe pod'
+alias kds='k describe service'
+alias klog='k logs'

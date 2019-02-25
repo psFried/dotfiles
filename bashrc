@@ -33,16 +33,16 @@ function take() {
 
 
 
-if [[ -f "${HOME}/projects/dotfiles/git-completion.bash" ]]; then 
+if [[ -f "${HOME}/projects/dotfiles/git-completion.bash" ]]; then
     source "${HOME}/projects/dotfiles/git-completion.bash"
 fi
 
-if [[ -f "${HOME}/projects/dotfiles/invoke-maven.sh" ]]; then 
+if [[ -f "${HOME}/projects/dotfiles/invoke-maven.sh" ]]; then
     alias mvn="${HOME}/projects/dotfiles/invoke-maven.sh"
 fi
 
 # Git Prompt stuff
-git_branch() {
+function git_branch() {
     # -- Finds and outputs the current branch name by parsing the list of
     #    all branches
     # -- Current branch is identified by an asterisk at the beginning
@@ -51,7 +51,7 @@ git_branch() {
     git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-git_status() {
+function git_status() {
     # Outputs a series of indicators based on the status of the
     # working directory:
     # + changes are staged and ready to commit
@@ -70,7 +70,7 @@ git_status() {
     echo $output
 }
 
-git_color() {
+function git_color() {
     # Receives output of git_status as argument; produces appropriate color
     # code based on status of working directory:
     # - White if everything is clean
@@ -90,7 +90,7 @@ git_color() {
     fi
 }
 
-git_prompt() {
+function git_prompt() {
     # First, get the branch name...
     local branch=$(git_branch)
     # Empty output? Then we're not in a Git repository, so bypass the rest
@@ -105,7 +105,6 @@ git_prompt() {
 
 export PS1='\[\033[1;33m\]\w\[\033[0m\]$(git_prompt)\$ '
 
+# if kubectl is installed, then source the extra goodies
+command -v kubectl 2>&1>/dev/null && source "$HOME/projects/dotfiles/kube_bashrc"
 
-
-export NVM_DIR="/Users/pfried/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

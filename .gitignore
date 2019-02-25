@@ -3,4 +3,9 @@ dotvim/.netrwbook
 
 *.swp
 *.bk
+.DS_Store
+
+# Temporary entry to aid in development of the script
+merge-repository.sh
+
 
