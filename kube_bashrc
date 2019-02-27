@@ -3,7 +3,7 @@ function kube_prompt() {
     echo "[$(basename $(kubectl config current-context))]"
 }
 
-export PS1="$(kube_prompt)$PS1"
+export PS1="\$(kube_prompt)$PS1"
 
 export KUBENS=''
 
