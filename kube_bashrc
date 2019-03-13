@@ -1,13 +1,29 @@
 
+export KUBENS=''
+export KUBECTX="$(kubectl config current-context)"
+
+
+function update_kube_context() {
+  KUBECTX="$(kubectl config current-context)"
+}
+
 function kube_prompt() {
-    echo "[$(basename $(kubectl config current-context))]"
+    # update the context env var at the end of every command
+    update_kube_context
+    echo "[$(basename ${KUBECTX}) ${KUBENS}]"
 }
 
 export PS1="\$(kube_prompt)$PS1"
 
-export KUBENS=''
+
 
 function ekubectl() {
+    # check the context to ensure that it hasn't changed since the last time
+    if [[ "$KUBECTX" != "$(kubectl config current-context)" ]]; then 
+        echo "Refusing to run kubectl because the context was changed since the last command!" 1>&2
+        return
+    fi
+
     if [[ -z "$KUBENS" ]]; then
         echo "Running without namespace: kubectl $@"
         kubectl "$@"
@@ -21,6 +37,8 @@ function nskubectl() {
     export KUBENS="$1"
     if [[ "$#" -gt 1 ]]; then
         ekubectl "${@:2}"
+    elif [[ -z "$KUBENS" ]]; then
+        kubectl get namespaces
     fi
 }
 
