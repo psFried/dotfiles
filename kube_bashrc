@@ -4,7 +4,7 @@ export KUBECTX="$(kubectl config current-context)"
 
 
 function update_kube_context() {
-  KUBECTX="$(kubectl config current-context)"
+  export KUBECTX="$(kubectl config current-context)"
 }
 
 function kube_prompt() {
@@ -21,6 +21,8 @@ function ekubectl() {
     # check the context to ensure that it hasn't changed since the last time
     if [[ "$KUBECTX" != "$(kubectl config current-context)" ]]; then 
         echo "Refusing to run kubectl because the context was changed since the last command!" 1>&2
+        update_kube_context
+        export KUBENS=''
         return
     fi
 
@@ -42,15 +44,30 @@ function nskubectl() {
     fi
 }
 
+function kubeallns() {
+  echo "Running: kubectl $@ --all-namespaces"
+  kubectl "$@" --all-namespaces
+}
+
+
 
 alias kns='nskubectl'
 alias k='ekubectl'
+alias ka='kubeallns'
+
 
 alias kg='k get'
+alias kag='kubeallns get'
 alias kgp='k get pod'
+alias kagp='kubeallns get pods'
 alias kgs='k get service'
+alias kags='kubeallns get svc'
+alias kpax='k get pax'
+alias kapax='kubeallns get pax'
 
 alias kd='k describe'
+alias kad='kubeallns describe'
 alias kdp='k describe pod'
 alias kds='k describe service'
+alias kads='kubeallns describe service'
 alias klog='k logs'
