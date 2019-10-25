@@ -108,3 +108,6 @@ export PS1='\[\033[1;33m\]\w\[\033[0m\]$(git_prompt)\$ '
 # if kubectl is installed, then source the extra goodies
 command -v kubectl 2>&1>/dev/null && source "$HOME/projects/dotfiles/kube_bashrc"
 
+
+# added by travis gem
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
