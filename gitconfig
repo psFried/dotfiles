@@ -11,6 +11,9 @@
 [pull]
     rebase = true
 
+[status]
+showUntrackedFiles = all
+
 [alias]
     # pretty listing of branches in order of commit date
     gb = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
