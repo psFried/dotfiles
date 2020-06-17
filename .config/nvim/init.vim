@@ -29,6 +29,10 @@ Plug 'jiangmiao/auto-pairs'
 " COC config
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" highlight hex color codes
+Plug 'chrisbra/Colorizer'
+" automatically enable color hilighting in css and html files
+let g:colorizer_auto_filetype='css,html'
 
 
 " This section taken from the recommendataion here: https://github.com/rust-analyzer/rust-analyzer/issues/769#issuecomment-463524385

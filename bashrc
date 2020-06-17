@@ -1,12 +1,6 @@
 #!/bin/bash
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-      . /etc/bashrc
-fi
 
-# setup path variable to work with rustup
-export PATH="${HOME}/.cargo/bin:${PATH}"
 export LESS+=' -r'
 
 # set default editor to neovim ;)
