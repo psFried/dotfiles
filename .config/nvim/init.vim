@@ -29,6 +29,8 @@ Plug 'jiangmiao/auto-pairs'
 " COC config
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'google/vim-jsonnet'
+
 " highlight hex color codes
 Plug 'chrisbra/Colorizer'
 " automatically enable color hilighting in css and html files
