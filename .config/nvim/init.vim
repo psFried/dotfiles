@@ -30,6 +30,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'google/vim-jsonnet'
+Plug 'jremmen/vim-ripgrep'
 
 " highlight hex color codes
 Plug 'chrisbra/Colorizer'
