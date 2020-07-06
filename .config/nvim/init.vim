@@ -9,6 +9,9 @@ set showmatch
 set smarttab
 set tabstop=8
 
+" dim the status line on inactive windows so that I can tell which one I'm working in
+highlight StatusLineNC cterm=bold ctermfg=white ctermbg=darkgray
+
 " set list
 " show a dot for space chars when 'list' is enabled
 set lcs+=space:·
