@@ -33,7 +33,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'google/vim-jsonnet'
+
+" provides the :Rg command
 Plug 'jremmen/vim-ripgrep'
+
+" status line plugin
+Plug 'vim-airline/vim-airline'
 
 " highlight hex color codes
 Plug 'chrisbra/Colorizer'
@@ -52,27 +57,12 @@ let g:colorizer_auto_filetype='css,html'
 Plug 'junegunn/fzf'
 nnoremap <silent> <Leader>g :FZF<CR>
 
-" completion handling
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
 " neosnippet
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
 " Initialize plugin system
 call plug#end()
-
-" let g:deoplete#enable_at_startup = 1
-" let g:neosnippet#enable_complete_done = 1
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['rust-analyzer'],
-"         \ }
-
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
 " tell netrw to use .gitignore files
