@@ -4,10 +4,10 @@ set number
 
 set autoindent
 set expandtab
-set shiftwidth=8
+set shiftwidth=4
 set showmatch
 set smarttab
-set tabstop=8
+set tabstop=4
 
 " dim the status line on inactive windows so that I can tell which one I'm working in
 highlight StatusLineNC cterm=bold ctermfg=white ctermbg=darkgray
