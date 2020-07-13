@@ -11,6 +11,9 @@ set tabstop=4
 
 " dim the status line on inactive windows so that I can tell which one I'm working in
 highlight StatusLineNC cterm=bold ctermfg=white ctermbg=darkgray
+highlight CursorLine cterm=none
+highlight CursorLineNR ctermfg=white ctermbg=green
+set cursorline
 
 " set list
 " show a dot for space chars when 'list' is enabled
