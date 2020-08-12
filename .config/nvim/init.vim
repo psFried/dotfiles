@@ -29,6 +29,9 @@ syntax on
 " vim-plug plugins section
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 Plug 'jiangmiao/auto-pairs'
 " let g:AutoPairsFlyMode = 1
 
