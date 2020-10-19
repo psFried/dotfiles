@@ -19,10 +19,13 @@ showUntrackedFiles = all
     gb = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
     # More useful log output
-    lg = log --graph --topo-order --boundary --oneline
+    lg = "log --graph --topo-order --boundary --pretty=format:'%Cblue%ad%Creset -%C(yellow)%d%Creset %h %s %C(bold blue)<%an>%Creset'"
     ap = add -p
     co = checkout
     cb = checkout -b
     db = branch -d
     br = branch
     st = status
+
+[pager]
+	branch = false

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# taken from: https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+NPM_CONFIG_PREFIX="$HOME/.npm-packages"
+export PATH="$PATH:$HOME/.npm-packages/bin"
 
 export LESS+=' -r'
 

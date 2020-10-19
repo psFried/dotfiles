@@ -8,6 +8,7 @@ set shiftwidth=4
 set showmatch
 set smarttab
 set tabstop=4
+set scrolloff=6
 
 " dim the status line on inactive windows so that I can tell which one I'm working in
 highlight StatusLineNC cterm=bold ctermfg=white ctermbg=darkgray
@@ -25,6 +26,13 @@ set nojoinspaces
 
 syntax on
 
+" Removes trailing spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
+" Trim all trailing whitespace
+autocmd BufWritePre *.{c,cpp,rs,js,sql,ts,yaml,json,go,java,scala,html,css} call TrimWhiteSpace()
 
 " vim-plug plugins section
 call plug#begin('~/.config/nvim/plugged')
@@ -45,6 +53,10 @@ Plug 'jremmen/vim-ripgrep'
 
 " status line plugin
 Plug 'vim-airline/vim-airline'
+" add the unicode code point of the character under the cursor
+let g:airline_section_z='%#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__# :%3v U+%b'
+" Remove the vcs info, since it takes up a lot of space and crowds out the rest of the sections
+let g:airline_section_b=''
 
 " highlight hex color codes
 Plug 'chrisbra/Colorizer'
