@@ -29,3 +29,7 @@ showUntrackedFiles = all
 
 [pager]
 	branch = false
+
+[core]
+    excludesfile = ~/.dot/global_gitignore
+
