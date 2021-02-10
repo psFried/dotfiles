@@ -1,0 +1,9 @@
+# This config file is used by ripgrep. Ripgrep does not look in any pre-determined locations for configuration files. It only loads this if `RIPGREP_CONFIG_PATH` is set to the path of this file. This is set in bashrc.
+
+# Add the jsonnet type
+--type-add
+jsonnet:*.libsonnet
+
+# Enable smart case. This makes all searches case insensitive unless they contain at least one capital, which will make the entire search case sensitive.
+--smart-case
+

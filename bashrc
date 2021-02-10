@@ -4,6 +4,8 @@
 NPM_CONFIG_PREFIX="$HOME/.npm-packages"
 export PATH="$PATH:$HOME/.npm-packages/bin"
 
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rgconfig"
+
 export LESS+=' -r'
 
 # set default editor to neovim ;)
