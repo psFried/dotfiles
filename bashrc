@@ -36,6 +36,12 @@ function take() {
     mkdir -p "$1" && cd "$1"
 }
 
+function hist() {
+    local hist_file="${HISTFILE:-"$HOME/.bash_history"}"
+    local cmd="$(cat "$hist_file" | sort -u | sk | sed 's/ *$//')"
+    eval $cmd
+}
+
 # if kubectl is installed, then source the extra goodies
 #command -v kubectl 2>&1>/dev/null && source "$HOME/projects/dotfiles/kube_bashrc"
 
