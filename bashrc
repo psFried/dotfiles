@@ -36,10 +36,70 @@ function take() {
     mkdir -p "$1" && cd "$1"
 }
 
+# Use skim to find a command in the bash history and execute it
 function hist() {
+    # First write out any history that bash may have buffered
+    history -w || true
+
     local hist_file="${HISTFILE:-"$HOME/.bash_history"}"
-    local cmd="$(cat "$hist_file" | sort -u | sk | sed 's/ *$//')"
+    local cmd="$(cat "$hist_file" | sort -u | sk --bind 'ctrl-y:execute-silent(echo {} | xclip -rmlastnl -selection clipboard -i)+abort' | sed 's/ *$//')"
+    history -s "$cmd"
+    echo "$cmd"
     eval $cmd
+}
+
+
+alias k=kubectl
+alias kubeshell='kubectl run phildebug --rm=true -it --image=digitalocean/doks-debug:latest --command=true -- bash'
+
+function kns() {
+    local ns="$1";
+    local current_context="$(kubectl config current-context)"
+    if [[ -z "$current_context" ]]; then
+        echo "no kubernetes context set" 1>&2;
+    else
+        kubectl config set-context "$current_context" --namespace="$ns"
+    fi
+}
+
+# Use skim to select a new kubernetes context
+function kctx() {
+    local new_ctx="$(kubectl config get-contexts -o name | sk --preview='kubectl config get-contexts {}' --preview-window='up:50%' | sed 's/ *$//')"
+    if [[ -n "$new_ctx" ]]; then
+        kubectl config use-context "$new_ctx"
+    fi
+}
+
+# Interactively select a kubernetes resource of an arbitrary type. Returns the full resource name,
+# including the type. For example, "pod/foo" or "service/bar"
+function kselect() {
+    local resource_type="$1"
+    if [[ -n "$resource_type" ]]; then
+        echo "$(kubectl get "$resource_type" -o name | sk --preview="kubectl describe {}" --preview-window='right:50%' | sed 's/ *$//')"
+    else
+        echo "kselect: missing resource type argument" 1>&2
+    fi
+}
+
+# Interactively select a kubernetes resource before running the given command.
+# "ki delete pod": select a pod, then delete it
+# "ki edit svc": select a service, then edit it
+# Prompts before actually doing anything, because I didn't really put a ton of thought into this ;)
+function ki() {
+    local kube_cmd="$1"
+    local resource_type="$2"
+    local args="${@:3}"
+
+    local resource="$(kselect "$resource_type")"
+    if [[ -n "$resource" ]]; then
+        local cmd="kubectl ${kube_cmd} ${resource} ${args[@]}"
+        read -p "Run: ${cmd} ? (y/n) " yn
+        if [[ "$yn" == "y" ]]; then
+            eval $cmd;
+        fi
+    else
+        echo "ki: no resource selected" 1>&2
+    fi
 }
 
 # if kubectl is installed, then source the extra goodies
