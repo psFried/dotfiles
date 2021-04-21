@@ -1,0 +1,10 @@
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+        lsp-enable-window
+}
+
+map global user = '|fmt --width $kak_option_autowrap_column<ret>'
+echo -debug "Finished kakrc"
+
+
