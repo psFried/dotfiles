@@ -36,6 +36,16 @@ function take() {
     mkdir -p "$1" && cd "$1"
 }
 
+# Allow the user to edit a command before running it using eval
+function edit_and_run() {
+    local cmd="$1"
+
+    # allow modifying the command. Note that -i is bash-specific
+    read -e -p "Command: " -i "$cmd" cmd;
+    history -s "$cmd"
+    eval "$cmd"
+}
+
 # Use skim to find a command in the bash history and execute it
 function hist() {
     # First write out any history that bash may have buffered
@@ -43,9 +53,7 @@ function hist() {
 
     local hist_file="${HISTFILE:-"$HOME/.bash_history"}"
     local cmd="$(cat "$hist_file" | sort -u | sk --bind 'ctrl-y:execute-silent(echo {} | xclip -rmlastnl -selection clipboard -i)+abort' | sed 's/ *$//')"
-    history -s "$cmd"
-    echo "$cmd"
-    eval $cmd
+    edit_and_run "$cmd"
 }
 
 
@@ -92,11 +100,8 @@ function ki() {
 
     local resource="$(kselect "$resource_type")"
     if [[ -n "$resource" ]]; then
-        local cmd="kubectl ${kube_cmd} ${resource} ${args[@]}"
-        read -p "Run: ${cmd} ? (y/n) " yn
-        if [[ "$yn" == "y" ]]; then
-            eval $cmd;
-        fi
+        local cmd="kubectl ${kube_cmd} ${resource} ${args[@]}";
+        edit_and_run "$cmd"
     else
         echo "ki: no resource selected" 1>&2
     fi
