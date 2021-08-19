@@ -1,2 +1,5 @@
 /ignore/
+Session.vim
+node_modules/
+flowctl_develop/
 

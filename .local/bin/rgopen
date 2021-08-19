@@ -9,24 +9,24 @@ while [[ "$arg_parse_continue" = true && -n "$1" ]]; do
     if [[ "$1" == "--" ]]; then
         # Everything after the -- will be passed as additional arguments to ripgrep
         arg_parse_continue=false
-	shift
-	rgargs="$@"
+        shift
+        rgargs="$@"
     else
         if [[ -n "$starting_filter" ]]; then
         	starting_filter="${starting_filter} $1"
         else
-	    starting_filter="$1"
+            starting_filter="$1"
         fi
 	shift
     fi
 done
 
 if [[ -n "$starting_filter" ]]; then
-    cmd_query="--cmd-query $starting_filter"
+    cmd_query="--cmd-query \"$starting_filter\""
 fi
 
 # skim will print the final selections, one per line. Each selection will be the line that was returned by ripgrep, which will be in the format: <file-path>:<line-num> <line-text>
-selected_files="$(sk --bind "ctrl-p:toggle-preview" ${cmd_query} --ansi --multi -i -c "rg --color=always --smart-case --line-number \"{}\" ${rgargs}" --preview="rgopen-preview.sh -v {}" --preview-window=up:50%)"
+selected_files="$(sk --bind "ctrl-p:toggle-preview" --cmd-query "$starting_filter" --ansi --multi -i -c "rg --color=always --smart-case --line-number \"{}\" ${rgargs}" --preview="rgopen-preview.sh -v {}" --preview-window=up:50%)"
 if [[ $? -ne 0 ]]; then
     exit $?
 fi
