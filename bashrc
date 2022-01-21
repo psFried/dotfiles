@@ -2,7 +2,7 @@
 
 # taken from: https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
 NPM_CONFIG_PREFIX="$HOME/.npm-packages"
-export PATH="$PATH:$HOME/.npm-packages/bin"
+export PATH="$PATH:$HOME/.npm-packages/bin:$HOME/.local/bin"
 
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rgconfig"
 
@@ -11,9 +11,11 @@ export LESS+=' -r'
 # set default editor to neovim ;)
 export EDITOR=nvim
 
-# emulate these useful commands from osx
-alias pbcopy='xclip -selection clipboard -i'
-alias pbpaste='xclip -selection clipboard -o'
+if [[ "$(uname)" != "Darwin" ]]; then
+    # emulate these useful commands from osx
+    alias pbcopy='xclip -selection clipboard -i'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
 
 alias st='git status'
 alias co='git checkout'
