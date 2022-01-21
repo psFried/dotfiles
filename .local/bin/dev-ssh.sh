@@ -53,7 +53,7 @@ fi
 # it. Wait until it can establish a connection using netcat before trying ssh.
 ATTEMPT=0
 while [[ "$ATTEMPT" -le 20 ]]; do
-    nc -w 5 35.223.75.38 22 < /dev/null &>/dev/null && break
+    nc -w 5 "$VM_IP" 22 < /dev/null &>/dev/null && break
     log waiting for "$VM_IP:22" to accept connections
     sleep 3
 done
