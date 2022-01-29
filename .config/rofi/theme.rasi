@@ -1,0 +1,5 @@
+@theme "/usr/share/rofi/themes/arthur.rasi"
+
+* {
+  font: "pango:Noto Sans Regular 24";
+}

@@ -136,7 +136,7 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 
-  font: "pango:Noto Sans Regular 24";
+  modi: "window,run,combi";
   timeout {
       action: "kb-cancel";
       delay:  0;
@@ -146,3 +146,4 @@ configuration {
       sorting-method:    "name";
   }
 }
+@theme "theme.rasi"
