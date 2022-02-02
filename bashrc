@@ -109,9 +109,7 @@ function ki() {
     fi
 }
 
-# if kubectl is installed, then source the extra goodies
-#command -v kubectl 2>&1>/dev/null && source "$HOME/projects/dotfiles/kube_bashrc"
-
-# added by travis gem
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+if [[ -f "/usr/share/powerline/bash/powerline.sh" ]]; then
+    . /usr/share/powerline/bash/powerline.sh
+fi
 

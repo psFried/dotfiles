@@ -15,9 +15,9 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Noto Sans Regular 12
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# Run autorandr when logging in, to detect the current monitor configuration and change to it, if
+# applicable
+exec --no-startup-id autorandr -c
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -33,12 +33,19 @@ exec --no-startup-id nm-applet
 # Blueman applet manages bluetooth connections
 exec --no-startup-id blueman-applet
 
+# Audio system tray
+exec --no-startup-id pasystray
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# use xbacklight
+bindsym XF86MonBrightnessUp exec xbacklight +10
+bindsym XF86MonBrightnessDown exec xbacklight -10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -192,9 +199,60 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+######################################
+# color settings for bar and windows #
+######################################
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows:
+#class		        	border		bground		text		indicator	child_border
+client.focused		    $lightblue	$darkblue	$white		$purple		$mediumgrey
+client.unfocused	    $darkblue	$darkblue	$grey		$purple		$darkgrey
+client.focused_inactive	$darkblue	$darkblue	$grey		$purple		$black
+client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+#bar {
+#       status_command i3status
+#	font pango:Noto Sans Regular 12
+#}
 bar {
-        status_command i3status
-	font pango:Noto Sans Regular 12
+    font pango:Noto Sans Regular 12, FontAwesome 12
+    status_command i3blocks -c ~/.config/i3/i3blocks-config
+    position bottom
+#	    	i3bar_command i3bar --transparency
+# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
+# reference: https://i3wm.org/docs/userguide.html#_tray_output
+    #tray_output primary
+    tray_padding 2
+
+# When strip_workspace_numbers is set to yes,
+# any workspace that has a name of the form
+# “[n][:][NAME]” will display only the name.
+    strip_workspace_numbers yes
+##strip_workspace_name no
+
+    colors {
+		    separator          $purple
+		    background         $darkgrey
+		    #statusline         $white
+#                          		border 		        bg		txt		indicator
+		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
+		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
+		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
+		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+	}
 }

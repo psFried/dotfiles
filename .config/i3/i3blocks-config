@@ -1,0 +1,78 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+
+command=~/.config/i3/scripts/$BLOCK_NAME
+separator_block_width=15
+markup=pango
+
+# Volume indicator
+#
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+
+#[volume]
+#label=♪
+#interval=once
+#signal=10
+#STEP=5%
+
+#[volume-pulseaudio]
+#command=~/.config/i3/scripts/volume
+#instance=Master
+#interval=1
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
+[battery]
+label=⚡:
+interval=30
+
+# Date Time
+#
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=5
+
+[time-utc]
+command=date -u '+%Y-%m-%d %H:%M:%S UTC'
+interval=5
+
+#set power-profile
+[power-profiles]
+full_text=POWER PROFILES
+color=#407437
+
+#Show the current power-profile
+[ppd-status]
+interval=5
+
+[powermenu]
+full_text=POWER
+
