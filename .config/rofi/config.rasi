@@ -136,7 +136,7 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 
-  modi: "window,run,combi";
+  modi: "window,drun,combi,run";
   timeout {
       action: "kb-cancel";
       delay:  0;

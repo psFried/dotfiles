@@ -15,6 +15,7 @@ sudo dnf install -y \
     gcc \
     g++ \
     git \
+    jq \
     libxcb-devel \
     libxkbcommon-devel \
     libxcrypt-compat \
@@ -23,6 +24,8 @@ sudo dnf install -y \
     neovim \
     openssl-devel \
     pasystray \
+    # perl-core required in order to build openssl
+    perl-core \
     power-profiles-daemon \
     protobuf-compiler \
     protobuf-devel \
@@ -94,7 +97,7 @@ set -x
 rustc --version
 cargo --version
 
-cargo install ripgrep skim polk bat
+cargo install ripgrep skim polk bat jless git-delta
 
 # Polk symlinks the dotfiles repo at ~/.dot, so this is just a way of checking whether polk setup
 # has already run.

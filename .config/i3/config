@@ -91,10 +91,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Moving workspaces between screens 
-bindsym $mod+Alt+h move workspace to output left
-bindsym $mod+Alt+j move workspace to output down
-bindsym $mod+Alt+k move workspace to output up
-bindsym $mod+Alt+l move workspace to output right
+bindsym $mod+Mod1+h move workspace to output left
+bindsym $mod+Mod1+j move workspace to output down
+bindsym $mod+Mod1+k move workspace to output up
+bindsym $mod+Mod1+l move workspace to output right
 
 # TODO: more sensible keys for horizontal splits
 # split in horizontal orientation

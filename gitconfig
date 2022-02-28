@@ -31,5 +31,21 @@ showUntrackedFiles = all
 	branch = false
 
 [core]
+    pager = delta
     excludesfile = ~/.dot/global_gitignore
 
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    side-by-side = true
+    line-number = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+    
