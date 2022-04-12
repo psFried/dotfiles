@@ -2,7 +2,8 @@
 
 # taken from: https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
 NPM_CONFIG_PREFIX="$HOME/.npm-packages"
-export PATH="$PATH:$HOME/.npm-packages/bin:$HOME/.local/bin:$HOME/go/bin"
+# .build/package/bin is a relative path within the Flow repo, where flow binaries live
+export PATH="$PATH:$HOME/.npm-packages/bin:$HOME/go/bin"
 
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rgconfig"
 
@@ -16,6 +17,8 @@ if [[ "$(uname)" != "Darwin" ]]; then
     alias pbcopy='xclip -selection clipboard -i'
     alias pbpaste='xclip -selection clipboard -o'
 fi
+
+alias flowenv='export CONSUMER_ADDRESS="http://localhost:9000" BROKER_ADDRESS="http://localhost:8080"'
 
 alias st='git status'
 alias co='git checkout'

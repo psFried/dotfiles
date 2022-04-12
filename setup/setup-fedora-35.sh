@@ -16,6 +16,8 @@ sudo dnf install -y \
     g++ \
     git \
     jq \
+    # libX11-devel is a dependency of nu shell
+    libX11-devel \
     libxcb-devel \
     libxkbcommon-devel \
     libxcrypt-compat \
