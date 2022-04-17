@@ -2,39 +2,34 @@
 
 set -ex
 
+# libX11-devel is a dependency of nu shell
+# perl-core required in order to build openssl
 sudo dnf install -y \
-    acpi \
+    alacritty \
     autoconf \
     automake \
     clang \
     clang-tools-extra \
+    curl \
     cmake \
     dnf-plugins-core \
-    freetype-devel \
-    fontconfig-devel \
     gcc \
     g++ \
     git \
     jq \
-    # libX11-devel is a dependency of nu shell
     libX11-devel \
     libxcb-devel \
     libxkbcommon-devel \
     libxcrypt-compat \
     lld \
     llvm \
+    musl-gcc \
     neovim \
     openssl-devel \
-    pasystray \
-    # perl-core required in order to build openssl
     perl-core \
-    power-profiles-daemon \
     protobuf-compiler \
     protobuf-devel \
-    rofi \
-    snapd \
-    xbacklight \
-    xclip
+    sqlite-devel
 
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf install -y docker-ce docker-ce-cli containerd.io
@@ -43,12 +38,10 @@ sudo dnf install -y docker-ce docker-ce-cli containerd.io
 if ! groups | grep docker >/dev/null; then
     echo "adding docker group"
     getent group docker >/dev/null || sudo groupadd docker
-    sudo gpasswd -a ${USER} docker
+    sudo usermod -a -G docker ${USER}
     newgrp
 fi
 
-# The blueman package brings in a bunch of extra kde stuff unless this setopt is present
-sudo dnf --setopt=install_weak_deps=False install -y blueman
 sudo dnf groupinstall -y "Development Tools"
 
 # node installs as a module
@@ -99,7 +92,8 @@ set -x
 rustc --version
 cargo --version
 
-cargo install ripgrep skim polk bat jless git-delta
+# Just some nice tools that I use.
+cargo install --locked ripgrep skim polk bat jless git-delta lsd fd-find starship
 
 # Polk symlinks the dotfiles repo at ~/.dot, so this is just a way of checking whether polk setup
 # has already run.
