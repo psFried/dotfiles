@@ -29,6 +29,7 @@ sudo dnf install -y \
     perl-core \
     protobuf-compiler \
     protobuf-devel \
+    pv \
     sqlite-devel
 
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
