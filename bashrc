@@ -12,10 +12,15 @@ export LESS+=' -r'
 # set default editor to neovim ;)
 export EDITOR=nvim
 
-if [[ "$(uname)" != "Darwin" ]]; then
+if command -v xclip >> /dev/null; then
     # emulate these useful commands from osx
     alias pbcopy='xclip -selection clipboard -i'
     alias pbpaste='xclip -selection clipboard -o'
+fi
+
+if command -v wl-copy >> /dev/null; then
+    alias pbcopy='wl-copy --trim-newline'
+    alias pbpaste='wl-paste --no-newline'
 fi
 
 alias flowenv='export CONSUMER_ADDRESS="http://localhost:9000" BROKER_ADDRESS="http://localhost:8080"'
