@@ -12,13 +12,14 @@ export LESS+=' -r'
 # set default editor to neovim ;)
 export EDITOR=nvim
 
-if command -v xclip >> /dev/null; then
-    # emulate these useful commands from osx
+# emulate these useful commands from osx
+# The implementation depends on whether we're running under X or Wayland
+if command -v xclip >> /dev/null && [[ -n "$DISPLAY" ]]; then
     alias pbcopy='xclip -selection clipboard -i'
     alias pbpaste='xclip -selection clipboard -o'
 fi
 
-if command -v wl-copy >> /dev/null; then
+if command -v wl-copy >> /dev/null && [[ -n "$WAYLAND_DISPLAY" ]]; then
     alias pbcopy='wl-copy --trim-newline'
     alias pbpaste='wl-paste --no-newline'
 fi

@@ -4,10 +4,12 @@ set -ex
 
 # libX11-devel is a dependency of nu shell
 # perl-core required in order to build openssl
+# snappy-devel lz4-devel bzip2-devel are all required for building Gazette
 sudo dnf install -y \
     alacritty \
     autoconf \
     automake \
+    bzip2-devel \
     clang \
     clang-tools-extra \
     curl \
@@ -16,6 +18,7 @@ sudo dnf install -y \
     gcc \
     g++ \
     git \
+    git-lfs \
     jq \
     libX11-devel \
     libxcb-devel \
@@ -23,6 +26,7 @@ sudo dnf install -y \
     libxcrypt-compat \
     lld \
     llvm \
+    lz4-devel \
     musl-gcc \
     neovim \
     openssl-devel \
@@ -30,6 +34,7 @@ sudo dnf install -y \
     protobuf-compiler \
     protobuf-devel \
     pv \
+    snappy-devel \
     sqlite-devel
 
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
@@ -46,7 +51,7 @@ fi
 sudo dnf groupinstall -y "Development Tools"
 
 # node installs as a module
-sudo dnf module install nodejs:14/development
+sudo dnf module install nodejs:16/development
 
 if [[ -z "$(command -v go)" ]]; then
 	echo "Installing Golang"
