@@ -1,5 +1,6 @@
-[editor]
 theme = "dracula_at_night"
+
+[editor]
 scrolloff = 5
 shell = ["bash", "-c"]
 
