@@ -1,0 +1,7 @@
+[editor]
+theme = "dracula_at_night"
+scrolloff = 5
+shell = ["bash", "-c"]
+
+[editor.cursor-shape]
+insert = "bar"
