@@ -2,6 +2,8 @@
 
 set -ex
 
+# repo for helix editor
+sudo dnf copr enable varlad/helix
 # libX11-devel is a dependency of nu shell
 # perl-core required in order to build openssl
 # snappy-devel lz4-devel bzip2-devel are all required for building Gazette
@@ -19,6 +21,7 @@ sudo dnf install -y \
     g++ \
     git \
     git-lfs \
+    helix \
     jq \
     libX11-devel \
     libxcb-devel \
@@ -41,12 +44,12 @@ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/dock
 sudo dnf install -y docker-ce docker-ce-cli containerd.io
 
 # Do we need to setup the docker group?
-if ! groups | grep docker >/dev/null; then
-    echo "adding docker group"
-    getent group docker >/dev/null || sudo groupadd docker
-    sudo usermod -a -G docker ${USER}
-    newgrp
-fi
+# if ! groups | grep docker >/dev/null; then
+#     echo "adding docker group"
+#     getent group docker >/dev/null || sudo groupadd docker
+#     sudo usermod -a -G docker ${USER}
+#     newgrp
+# fi
 
 sudo dnf groupinstall -y "Development Tools"
 
@@ -56,8 +59,8 @@ sudo dnf module install nodejs:16/development
 if [[ -z "$(command -v go)" ]]; then
 	echo "Installing Golang"
 
-	GOLANG_VERSION=1.17.5
-	GOLANG_SHA256=bd78114b0d441b029c8fe0341f4910370925a4d270a6a590668840675b0c653e
+	GOLANG_VERSION=1.19.1
+	GOLANG_SHA256=acc512fbab4f716a8f97a8b3fbaa9ddd39606a28be6c2515ef7c6c6311acffde
 	echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.bashrc
 
 	curl -L -o /tmp/golang.tgz https://golang.org/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz
