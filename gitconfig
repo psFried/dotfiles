@@ -11,8 +11,6 @@
 [pull]
     rebase = true
 
-[status]
-showUntrackedFiles = all
 
 [alias]
     # pretty listing of branches in order of commit date
