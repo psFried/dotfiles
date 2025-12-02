@@ -4,6 +4,9 @@ theme = "dracula_at_night"
 scrolloff = 5
 shell = ["bash", "-c"]
 
+[editor.soft-wrap]
+enable = true
+
 [editor.cursor-shape]
 insert = "bar"
 

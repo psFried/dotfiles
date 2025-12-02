@@ -3,3 +3,6 @@ Session.vim
 node_modules/
 flowctl_develop/
 
+# helix editor config files
+/.helix/
+
